@@ -41,4 +41,4 @@ This document explores several different aspects of the problem space and detail
 
 ### Discussed ideas
 
-- Use a ephemeral nostr identity to create an authentication event required for uploading. I believe it's true that the GET /<sha-256> endpoint is usually not guarded by auth on Blossom servers. If, this is the default behaviour then we can use this method to upload under throw away identities and only the user's who know where those files are will be able to access them, and then decrypt them.
+- Use a ephemeral nostr identity to create an authentication event required for uploading. I believe it's true that the `GET /<sha-256>` endpoint is usually not guarded by auth on Blossom servers. If, this is the default behaviour then we can use this method to upload under throw away identities and only the user's who know where those files are will be able to access them, and then decrypt them.
