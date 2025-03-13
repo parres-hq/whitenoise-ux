@@ -4,7 +4,7 @@
 
 Effective Communication goes beyond just text. We want users of White Noise to be able to richly communicate with images, videos, audio messages & audio files, and documents as well as text.
 
-However, given Noster's open and decentralized relay network, we need to think carefully about how and where these files are stored so that we don't unintentionally expose the content of the files or any sensitive metadata.
+However, given Noster's open and decentralized relay network (which doesn't support storing binary data), we need to think carefully about how and where these files are stored so that we don't unintentionally expose the content of the files or any sensitive metadata.
 
 This document explores several different aspects of the problem space and details the solutions/trade-offs that we have decided to go with in order to add media uploads to White Noise.
 
@@ -15,7 +15,7 @@ This document explores several different aspects of the problem space and detail
 - Users should be able to send messages containing media files with or without text content.
 - Users should be able to remove uploaded media files before sending them to the group.
 - Media files should be encrypted using a group secret (exporter secret), ideally using a standard nostr method of encryption.
-- Media files should be uploaded to a blossom server chosen by the user.
+- Media files should be uploaded to a [blossom](https://github.com/hzrd149/blossom) server chosen by the user.
 - Media files should show in the chat transcript alongside any text content.
 - The app should download and locally cache images from chats. These images should respect the disappearing message rules we'll inplement in the future
 
@@ -41,4 +41,4 @@ This document explores several different aspects of the problem space and detail
 
 ### Discussed ideas
 
--
+- Use a ephemeral nostr identity to create an authentication event required for uploading. I believe it's true that the GET /<sha-256> endpoint is usually not guarded by auth on Blossom servers. If, this is the default behaviour then we can use this method to upload under throw away identities and only the user's who know where those files are will be able to access them, and then decrypt them.
