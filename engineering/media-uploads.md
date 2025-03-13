@@ -16,6 +16,8 @@ This document explores several different aspects of the problem space and detail
 - Users should be able to remove uploaded media files before sending them to the group.
 - Media files should be encrypted using a group secret (exporter secret), ideally using a standard nostr method of encryption.
 - Media files should be uploaded to a blossom server chosen by the user.
+- Media files should show in the chat transcript alongside any text content.
+- The app should download and locally cache images from chats. These images should respect the disappearing message rules we'll inplement in the future
 
 ## Encryption scheme
 
@@ -23,10 +25,20 @@ This document explores several different aspects of the problem space and detail
 
 - Currently NIP-44 v2 encryption has an upper limit of 64kb of data.
 - There are discussions to create a new version that removes this limit. [Issue](https://github.com/nostr-protocol/nips/issues/1712) / [PR](https://github.com/nostr-protocol/nips/pull/1838)
-- We currently use NIP-44 v2 in other places (sending welcome messages, encrypting the content of `kind:445` messages).
+- We currently use NIP-44 v2 in other places (sending welcome messages, encrypting the content of `kind:445` messages). So far we haven't hit the limits on these but it's a known issue with larger groups, for example with the serialized welcome message content would go beyond this limit in groups of ~150 users in my tests.
+- There is also an [encrypted file message kind](https://github.com/nostr-protocol/nips/blob/master/17.md#file-message-kind) as part of NIP-17.
+- There is also media attachments in [NIP-92](https://github.com/nostr-protocol/nips/blob/master/92.md). We're currently using these to show images as part of the message content.
+
+### Discussed ideas
+
+- Switch to AES-GCM encryption for media uploads (this would likely need to be an extension of or addition to [NIP-EE](https://github.com/nostr-protocol/nips/pull/1427)). What this would look like is a combination Of nip-17 encrypted file messages (minus the inclusion of the decryption key tag) and of nip-92's `imeta` tags.
 
 ## Blossom uploads
 
 ### Facts
 
 - Most blossom servers require authentication
+
+### Discussed ideas
+
+-
