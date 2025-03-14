@@ -1,4 +1,4 @@
-# Media Uploading - March 2025
+# Media Uploads - March 2025
 
 ## The Problem
 
