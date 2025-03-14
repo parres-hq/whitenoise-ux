@@ -89,7 +89,7 @@ Here's an example of a `kind:9` unsigned event with a single encrypted image:
       "m image/png",
       "dim 1200x1200",
       "blurhash LSRysgof~qRjofofWBRj_3j[9FfQ",
-      "x b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+      "x b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c", // The sha-256 hash of the original file, not the encyrpted blob
       "descryption-nonce 34661f3eb8541bcb5d4d4f98",
       "encryption-algorithm aes-gcm",
       "filename costa-rica-sunset.png"
